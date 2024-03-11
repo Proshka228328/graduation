@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error - Произошла непредвиденная ошибка</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f8f8;
+            color: #333;
+            text-align: center;
+            padding: 50px;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: #d9534f;
+        }
+
+        p {
+            font-size: 18px;
+            margin-top: 20px;
+        }
+
+        .error-message {
+            color: #a94442;
+            font-weight: bold;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Error - Произошла непредвиденная ошибка</h1>
+        <p>Извините, но произошла непредвиденная ошибка</p>
+
+        <!-- Вывод ошибки на странице -->
+        <div class="error-message">{{ error }}</div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Подключение к камере</title>
+</head>
+<body>
+    <h1>Подключение к камере</h1>
+    
+    <div id="videoContainer"></div>
+
+    <script>
+        async function connectToCamera() {
+            const videoContainer = document.getElementById('videoContainer');
+            const videoElement = document.createElement('video');
+            videoElement.autoplay = true;
+
+            try {
+                const response = await fetch(`/connect-to-camera/${id}`);
+                const result = await response.json();
+
+                if (result.success) {
+                    // Подключение успешно
+                    videoElement.src = result.videoUrl;
+                    videoContainer.innerHTML = '';
+                    videoContainer.appendChild(videoElement);
+                } else {
+                    // Вывести ошибку подключения
+                    alert('Не удалось подключиться к камере. Проверьте введенные данные.');
+                }
+            } catch (error) {
+                console.error('Ошибка при подключении к камере:', error);
+            }
+        }
+
+        // Подключение камеры при загрузке страницы
+        connectToCamera();
+    </script>
+</body>
+</html>

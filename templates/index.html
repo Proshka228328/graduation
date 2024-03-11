@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кнопки для камер</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            text-align: center;
+        }
+
+        .button-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .button {
+            position: relative;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            background-color: #e74c3c;
+            color: #fff;
+            text-decoration: none;
+            display: inline-block;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .button:hover {
+            background-color: #c0392b;
+        }
+
+        .corner-button {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+        }
+
+        .status {
+            margin-top: 10px;
+            font-size: 18px;
+            color: #e74c3c;
+            font-weight: bold;
+        }
+
+        .dot {
+            position: absolute;
+            top: 50%;
+            right: -10px;
+            transform: translate(0, -50%);
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            animation: blink 1s infinite;
+        }
+
+        .online {
+            background-color: #2ecc71;
+        }
+
+        .offline {
+            background-color: #e74c3c;
+            animation: none; /* Убираем анимацию для красной точки */
+        }
+
+        @keyframes blink {
+            50% {
+                background-color: #2ecc71;  
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="button-container">
+            <a class="button" href="/connect-to-camera/1">Камера 1<div id="dot-1" class="dot"></div></a>
+            <a class="button" href="/connect-to-camera/2">Камера 2<div id="dot-2" class="dot"></div></a>
+            <a class="button" href="/connect-to-camera/3">Камера 3<div id="dot-3" class="dot"></div></a>
+            <a class="button" href="/connect-to-camera/4">Камера 4<div id="dot-4" class="dot"></div></a>
+            <a class="button" href="/connect-to-camera/5">Камера 5<div id="dot-5" class="dot"></div></a>
+            <a class="button" href="/connect-to-camera/6">Камера 6<div id="dot-6" class="dot"></div></a>
+            <a class="button" href="/connect-to-camera/7">Камера 7<div id="dot-7" class="dot"></div></a>
+            <a class="button" href="/connect-to-camera/8">Камера 8<div id="dot-8" class="dot"></div></a>
+            <a class="button" href="/connect-to-camera/9">Камера 9<div id="dot-9" class="dot"></div></a>
+            <a class="button" href="/connect-to-camera/10">Камера 10<div id="dot-10" class="dot"></div></a>                    
+        </div>
+        <a class="button corner-button" href="javascript:void(0);" onclick="checkAllCameras()">Обновить статус</a>
+    </div>
+    <script>
+        async function checkCameraStatus(id) {
+            try {
+                const response = await fetch(`/camera/${id}/ping`);
+                const result = await response.json();
+                const dot = document.getElementById(`dot-${id}`);
+
+                if (result.success) {
+                    dot.classList.remove('offline');
+                    dot.classList.add('online');
+                } else {
+                    dot.classList.remove('online');
+                    dot.classList.add('offline');
+                }
+            } catch (error) {
+                console.error("Error during status check:", error);
+            }
+        }
+
+        async function checkAllCameras() {
+            const cameraIds = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+            cameraIds.forEach((id) => checkCameraStatus(id));
+        }
+    </script>
+</body>
+</html>

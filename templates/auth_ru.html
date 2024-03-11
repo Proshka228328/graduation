@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./icon.ico" type="image/x-icon">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #000000;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .login-container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin-top: 20px;
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        .password-container {
+            position: relative;
+        }
+
+        input {
+            width: calc(100% - 24px);
+            padding: 10px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+        }
+
+        .show-password {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            padding: 0 10px;
+            color: #555;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+            display: block;
+            margin-top: 20px;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <title>Вход</title>
+</head>
+<body>
+    <div class="login-container">
+        <h1>Добро пожаловать!</h1>
+        <form action="/authenticate" method="post">
+            <label for="username">Имя пользователя:</label>
+            <input type="text" name="username" required>
+
+            <label for="password">Пароль:</label>
+            <div class="password-container">
+                <input type="password" name="password" id="password" required>
+                <div class="show-password" id="showPassword">&#128065;</div>
+            </div>
+            <button type="submit">Войти</button>
+        </form>
+        
+        <button onclick="location.href='/register_ru';" style="background-color: #28a745; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; margin-top: 10px;">
+            Регистрация
+        </button>
+        <button onclick="location.href='/';" style="background-color: #ff0000; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; margin-top: 10px;">
+            Сменить язык
+        </button>
+    </div>
+    
+
+    <script>
+        const passwordInput = document.getElementById('password');
+        const showPasswordIcon = document.getElementById('showPassword');
+
+        showPasswordIcon.addEventListener('mouseover', () => {
+            passwordInput.type = 'text';
+        });
+
+        showPasswordIcon.addEventListener('mouseout', () => {
+            passwordInput.type = 'password';
+        });
+    </script>
+</body>
+</html>
