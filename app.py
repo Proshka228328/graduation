@@ -47,7 +47,7 @@ class Instruments:
 
 class VideoCamera:
     def __init__(self):
-        # Используйте ваш IP-адрес и учетные данные
+    
         self.video = cv2.VideoCapture('rtsp://Horse:s10102008s@192.168.1.100:554/your_video_stream')
     
     def __del__(self):
